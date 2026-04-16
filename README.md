@@ -1,58 +1,153 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🧪 Laboratorio #2 - Implementación de Login en Laravel
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 📌 Introducción
 
-## About Laravel
+El presente laboratorio tiene como objetivo implementar un sistema de autenticación (login) utilizando el framework Laravel, aplicando la arquitectura Modelo-Vista-Controlador (MVC).
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Laravel organiza sus componentes de la siguiente manera:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+* **Modelos (Models):** Gestionan la lógica de negocio y la interacción con la base de datos.
+* **Vistas (Views):** Representan la interfaz gráfica del sistema.
+* **Controladores (Controllers):** Procesan las solicitudes del usuario y conectan modelos con vistas.
+* **Rutas (Routes):** Definen las direcciones URL y su comportamiento.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+El objetivo principal fue configurar un entorno funcional, instalar dependencias y lograr un sistema de login operativo.
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## ⚙️ Requisitos Previos
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Para ejecutar el proyecto se requiere:
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+* PHP 8.0 o superior
+* Composer
+* Laravel
+* Servidor local (WampServer / XAMPP / Laragon)
+* Apache o Nginx
+* MySQL o MariaDB
+* Visual Studio Code
 
-## Agentic Development
+---
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+## 🚀 Instalación del Proyecto
+
+### 1. Crear proyecto Laravel
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+composer create-project laravel/laravel mi_proyecto
+cd mi_proyecto
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+### 2. Instalar dependencias
 
-## Contributing
+```bash
+composer install
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 3. Configurar archivo .env
 
-## Code of Conduct
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 4. Instalar sistema de autenticación (Laravel Breeze)
 
-## Security Vulnerabilities
+```bash
+composer require laravel/breeze --dev
+php artisan breeze:install
+npm install
+npm run dev
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 5. Ejecutar migraciones
 
-## License
+```bash
+php artisan migrate
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 6. Ejecutar servidor
+
+```bash
+php artisan serve
+```
+
+Acceso al sistema:
+http://127.0.0.1:8000/
+
+---
+
+## 🗄️ Base de Datos
+
+Se utilizó MySQL como sistema gestor de base de datos.
+
+Configuración en el archivo `.env`:
+
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+Comando ejecutado para crear las tablas:
+
+```bash
+php artisan migrate
+```
+
+Tablas creadas automáticamente:
+
+* users
+* password_reset_tokens
+* sessions
+
+Se incluye en el repositorio un respaldo de la base de datos (.sql).
+
+---
+
+## 🖼️ Resultado del Laboratorio
+
+El sistema permite:
+
+* Registro de usuarios
+* Inicio de sesión
+* Cierre de sesión
+
+
+---
+
+## ⚠️ Dificultades y Soluciones
+
+**Problema 1:** Error al ejecutar `php artisan serve`
+**Solución:** Se verificó la instalación de PHP y se corrigió la configuración del PATH.
+
+**Problema 2:** Error al cargar dependencias
+**Solución:** Se ejecutó `composer install` correctamente.
+
+**Problema 3:** Problemas con el archivo `.env`
+**Solución:** Se configuraron correctamente los datos de conexión a la base de datos.
+
+**Problema 4:** Error con npm
+**Solución:** Se ejecutó `npm install` y `npm run dev`.
+
+---
+
+
+
+## 📅 Fecha de Ejecución
+
+Abril 15 2026
+
+---
+
+## 👨‍💻 Información del Estudiante
+
+Este laboratorio ha sido desarrollado por el estudiante de la Universidad Tecnológica de Panamá:
+
+* Nombre: Andrea Torrrento 
+* Correo: andrea.torrento@utp.ac.pa
+* Curso: Desarrollo de Software VII
+* Instructor: Ing. Irina Fong
